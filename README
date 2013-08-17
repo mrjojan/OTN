@@ -1,0 +1,24 @@
+OTN - Open TV Network
+
+*OTNClient.h
+-Main Gst part
+-start_stream function , which create rtsp stream with client`s id.
+-Constructor, creates object with id
+
+*OTNRTSPStreamer.h  
+-Singleton Class
+- Constructor Do nothing
+- get_instance singleton object
+- make_mapping maps id -> client
+- open_stream_for_client - Create Client Object with given id , then maps the id and that client , then calls
+start_stream with client object
+
+*OTNClientServer.h 
+- First of All it creates client id.
+- Constructor takes singleton OTNRTSPStreamer object, then calls open_stream_for_client function with sample id. 
+-This is can change to java
+
+*OtnRTSP.h
+-Create GstRTSPMediaFactory subclass and implements create_element function which is creating sample element and
+returns it. 
+-new Type and its api is using ion OTNClient.cpp to create new factory and call otn_set_uri to stream element
